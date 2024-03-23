@@ -1,17 +1,15 @@
-variable "project" {
-    type = string
-    #default = "vamsi-cloud" 
+terraform {
+  required_providers {
+    google = {
+      source = "hashicorp/google"
+      version = "5.21.0"
+    }
+  }
 }
 
-variable "compute_instance_name" {
-    type = string
-    default = "jenkins-vm"
-
-
+provider "google" {
+  project     = var.project
+  region      = "asia-east1"
+  zone ="asia-east1-a"
+  credentials = file("creds.json")
 }
-variable "allow_stopping" {
-    type = bool
-
-  
-}
-
