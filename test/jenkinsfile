@@ -24,7 +24,7 @@ pipeline {
                sh 'ls'
                 sh 'terraform init'
                 sh 'terraform plan'
-                sh 'terraform apply --auto-approve'
+                sh 'terraform $terraform_choice --auto-approve'
       }
             }
         }
