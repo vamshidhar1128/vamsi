@@ -2,6 +2,14 @@ pipeline {
     agent any
 
     stages {
+    stage ('fetching credentils'){
+        steps{
+        sh 'mkdir -p creds'
+       withCredentials([file(credentialsId: 'vamsi-creds', variable: 'creds.json')])
+      withCredentials([file(credentialsId: 'vamsi-cloud-gcs', variable: 'creds_gcs.json')])
+     sh 'ls -lart'
+        }
+    }
         stage('Build') {
             steps {
              dir ('test') {
