@@ -4,9 +4,15 @@ pipeline {
     stages {
     stage ('fetching credentils'){
         steps{
-        sh 'mkdir -p creds'
-       withCredentials([file(credentialsId: 'vamsi-creds', variable: 'creds.json')])
-      withCredentials([file(credentialsId: 'vamsi-cloud-gcs', variable: 'creds_gcs.json')])
+      
+      withCredentials([file(credentialsId: 'gcp_vamsi-cloud_gce_creator', variable: 'SECRET_FILE')]) {
+                 
+                    sh "cat $SECRET_FILE > ./test/creds.json"  
+                }
+                withCredentials([file(credentialsId: 'vamsi-cloud-gcs', variable: 'SECRET_FILE_GCS')]) {
+            
+                  sh "cat $SECRET_FILE_GCS > ./test/creds_gcs.json" 
+                }
      sh 'ls -lart'
         }
     }
