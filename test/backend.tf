@@ -1,7 +1,7 @@
 terraform {
  backend "gcs" {
    bucket  ="nasa7733"
-   prefix  = "terraform/state"
+   prefix  = "terraform-state/jenkins"
    credentials = "creds_gcs.json"
  }
 }
